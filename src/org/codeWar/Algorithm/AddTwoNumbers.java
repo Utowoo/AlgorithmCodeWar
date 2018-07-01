@@ -2,39 +2,52 @@ package org.codeWar.Algorithm;
 
 import org.codeWar.DataStructure.ListNode;
 
+import java.util.LinkedList;
+
+
 public class AddTwoNumbers {
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead; // Create return listNode structure
-        dummyHead = new ListNode(0);
-        ListNode p = l1, q = l2, curr = dummyHead; // initial varibles
+
+    public static LinkedList<Integer> addTwoNumbers(LinkedList<Integer> l1, LinkedList<Integer> l2) {
+
+        LinkedList<Integer> ret = new LinkedList<Integer>();
+
+        LinkedList<Integer> p = l1, q = l2; // initial varibles
         int carry = 0; // carry to next digit
-        while(p != null || q != null){
+        while(p.size() > 0 || q.size() > 0){
             int x = 0, y = 0, sum = 0;
-            if (p != null) {
-                x = p.val;
-                p = p.next;
+            if (p.size() > 0) {
+                x = p.pop();
             }else{
                 x = 0;
             }
-            if (q != null) {
-                y = q.val;
-                q = q.next;
+            if (q.size() > 0) {
+                y = q.pop();
             }else{
                 y = 0;
             }
             sum = carry + x + y;
             carry = sum / 10;
-            curr.next = new ListNode(sum % 10);
-            curr = curr.next;
+            ret.add(sum % 10);
+
         }
         if (carry > 0){
-            curr.next = new ListNode(carry);
+            ret.add(carry);
         }
-        return dummyHead.next;
+        return ret;
     }
 
-    public static void main(){
-        ListNode list1 = new ListNode(0);
-        ListNode list2 = new ListNode(0);
+    public static void main(String[] args){
+        LinkedList<Integer> list1 = new LinkedList<Integer>();
+        LinkedList<Integer> list2 = new LinkedList<Integer>();
+
+        list1.add(2);
+        list1.add(4);
+        list1.add(3);
+        list2.add(5);
+        list2.add(6);
+        list2.add(4);
+
+        LinkedList<Integer> result = addTwoNumbers(list1, list2);
+        System.out.println(result.toString());
     }
 }
