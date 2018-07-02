@@ -16,11 +16,25 @@ public class ListNode {
      */
     @Override
     public String toString() {
-        String ret = "{ ";
-        while(this != null){
-            ret = ret + this.val + " ";
+
+        String ret = null;
+        if(this != null){
+            ret = "Current ListNode value:" + this.val + "\n";
         }
-        ret = ret + "};";
+        if(this.next !=  null){
+            ret = ret + "next ListNode Value:" + this.next.val + "\n";
+        }else{
+            ret = ret + "The Next ListNode is null\n";
+        }
         return ret;
+    }
+
+    public static void main(String[] args) {
+        ListNode a = new ListNode(3);
+        a.next = new ListNode(2);
+
+        System.out.println(a.val);
+        System.out.println(a.next.val);
+        System.out.println(a.toString());
     }
 }
