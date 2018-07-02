@@ -8,5 +8,6 @@ public class TestListNodeJava {
        a.next = new ListNode(2);
 
        System.out.println(a.toString());
+       System.out.println(a.next.toString());
    }
 }
